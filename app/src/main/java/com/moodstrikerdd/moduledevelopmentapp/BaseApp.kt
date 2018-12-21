@@ -19,6 +19,6 @@ class BaseApp : Application() {
         super.onCreate()
         instance = this
         Thread.setDefaultUncaughtExceptionHandler(ExceptionCatcher)
-        ModuleActivityJumpReceiver().init(this)
+        ModuleActivityJumpReceiver.init(this)
     }
 }

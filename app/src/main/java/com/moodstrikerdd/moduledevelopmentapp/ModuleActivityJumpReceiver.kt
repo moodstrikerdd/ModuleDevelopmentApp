@@ -9,7 +9,7 @@ import com.moodstrikerdd.lib_common.constants.JumpActions
 import com.moodstrikerdd.lib_common.constants.Params
 import com.moodstrikerdd.lib_common.utils.ModuleActivityJumpHelper
 
-class ModuleActivityJumpReceiver : BroadcastReceiver() {
+object ModuleActivityJumpReceiver : BroadcastReceiver() {
     fun init(context: Context) {
         val intentFilter = IntentFilter()
         JumpActions
@@ -21,6 +21,12 @@ class ModuleActivityJumpReceiver : BroadcastReceiver() {
                 .getInstance(context)
                 .registerReceiver(this, intentFilter)
 
+    }
+
+    fun destory(context: Context){
+        LocalBroadcastManager
+                .getInstance(context)
+                .unregisterReceiver(this)
     }
 
     override fun onReceive(context: Context?, intent: Intent) {

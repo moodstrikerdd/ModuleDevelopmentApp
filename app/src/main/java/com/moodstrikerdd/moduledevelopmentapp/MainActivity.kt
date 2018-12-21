@@ -2,7 +2,6 @@ package com.moodstrikerdd.moduledevelopmentapp
 
 import com.moodstrikerdd.lib_common.base.BaseActivity
 import com.moodstrikerdd.lib_common.utils.MainFragmentDelegate
-import com.moodstrikerdd.module1.Module1Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -17,4 +16,8 @@ class MainActivity : BaseActivity() {
     }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+        ModuleActivityJumpReceiver.destory(this)
+    }
 }
