@@ -9,7 +9,7 @@ import android.widget.RadioGroup
 import com.moodstrikerdd.lib_common.R
 
 object MainFragmentDelegate {
-    val classPath = arrayOf(
+    private val classPath = arrayOf(
             "com.moodstrikerdd.module1.Module1Fragment",
             "com.moodstrikerdd.module2.Module2Fragment",
             "com.moodstrikerdd.module3.Module3Fragment")
@@ -17,13 +17,12 @@ object MainFragmentDelegate {
     fun init() {
         classPath.forEach {
             val forName = Class.forName(it)
-            val newInstance1 = forName.getConstructor().newInstance() as Fragment
-//            fragments.add(newInstance1)
+            forName.getConstructor().newInstance()
         }
     }
 
-    val fragments = arrayListOf<Fragment>()
-    val tabInfos = arrayListOf<TabInfo>()
+    private val fragments = arrayListOf<Fragment>()
+    private val tabInfos = arrayListOf<TabInfo>()
 
     fun add(fragment: Fragment, tabInfo: TabInfo) {
         add(fragments.size, fragment, tabInfo)
@@ -44,7 +43,7 @@ object MainFragmentDelegate {
 
     fun bind(fragmentManager: FragmentManager, radioGroup: RadioGroup, containId: Int) {
         initRadioGroup(radioGroup)
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
             for (i in 0 until radioGroup.childCount) {
                 val beginTransaction = fragmentManager.beginTransaction()
                 val fragment = fragments[i]
@@ -67,7 +66,7 @@ object MainFragmentDelegate {
     }
 
     private fun initRadioGroup(radioGroup: RadioGroup) {
-        var widthPixels = radioGroup.context.resources.displayMetrics.widthPixels
+        val widthPixels = radioGroup.context.resources.displayMetrics.widthPixels
         tabInfos.forEach {
             val radioButton = LayoutInflater.from(radioGroup.context).inflate(R.layout.radiobutton, null) as RadioButton
             val layoutParams = RadioGroup.LayoutParams(widthPixels / tabInfos.size, RadioGroup.LayoutParams.WRAP_CONTENT)
