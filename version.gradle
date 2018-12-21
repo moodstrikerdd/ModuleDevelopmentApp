@@ -1,0 +1,14 @@
+ext.libs = [:]
+
+def versions =[:]
+versions.kotlin_version = '1.2.71'
+versions.gradle = '3.2.1'
+
+def kotlin = [:]
+kotlin.kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin_version"
+kotlin.kotlin_stdlib_jdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin_version"
+libs.kotlin = kotlin
+
+def gradle = [:]
+gradle.gradle = "com.android.tools.build:gradle:$versions.gradle"
+libs.gradle = gradle
